@@ -14,7 +14,7 @@
         </field>
     </record>
     <record id="stock_scrap_tree_reason_code" model="ir.ui.view">
-        <field name="name">stock.scrap.tree.reason.code</field>
+        <field name="name">stock.scrap.list.reason.code</field>
         <field name="model">stock.scrap</field>
         <field name="inherit_id" ref="stock.stock_scrap_tree_view" />
         <field name="arch" type="xml">
