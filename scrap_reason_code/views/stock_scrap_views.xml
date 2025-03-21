@@ -11,7 +11,7 @@
                 <field name="reason_code_id" readonly="state == 'done'" />
                 <field name="allowed_reason_code_ids" invisible="True" />
             </xpath>
-            <field name="reason_code_id" position="attributes">
+            <field name="scrap_location_id" position="attributes">
                 <attribute name="readonly">True</attribute>
             </field>
         </field>
