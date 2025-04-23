@@ -19,7 +19,7 @@ class StockScrap(models.Model):
         compute="_compute_allowed_reason_code_ids",
     )
 
-    scrap_location_id = fields.Char(compute='_compute_scrap_location_id', stored=True, readonly=True)
+    scrap_location_id = fields.Char(compute='_compute_scrap_location_id', store=True, readonly=True)
     
     @api.depends("product_id", "product_id.categ_id")
     def _compute_allowed_reason_code_ids(self):
