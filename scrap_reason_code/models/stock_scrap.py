@@ -19,8 +19,11 @@ class StockScrap(models.Model):
         compute="_compute_allowed_reason_code_ids",
     )
 
-    scrap_location_id = fields.Char(compute='_compute_scrap_location_id', readonly=True)
-    
+    scrap_location_id = fields.Many2one(
+        'stock.location', 'Scrap Location',
+        compute='_compute_scrap_location_id', store=True, required=True, precompute=True,
+        domain="[('scrap_location', '=', True)]", check_company=True, readonly=False)
+   
     @api.depends("product_id", "product_id.categ_id")
     def _compute_allowed_reason_code_ids(self):
         for rec in self:
@@ -57,5 +60,5 @@ class StockScrap(models.Model):
     @api.depends('reason_code_id')
     def _compute_scrap_location_id(self):
         for scrap in self:
-            scrap.scrap_location_id = scrap.reason_code_id.location_id.name
+            scrap.scrap_location_id = scrap.reason_code_id.location_id
 
