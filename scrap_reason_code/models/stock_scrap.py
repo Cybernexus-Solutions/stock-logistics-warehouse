@@ -60,5 +60,8 @@ class StockScrap(models.Model):
     @api.depends('reason_code_id')
     def _compute_scrap_location_id(self):
         for scrap in self:
-            scrap.scrap_location_id = scrap.reason_code_id.location_id
+            if scrap.reason_code_id and scrap.reason_code_id.location_id:
+                scrap.scrap_location_id = scrap.reason_code_id.location_id
+            else:
+                super(StockScrap, scrap)._compute_scrap_location_id()
 
