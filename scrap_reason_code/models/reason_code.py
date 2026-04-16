@@ -15,7 +15,7 @@ class ScrapReasonCode(models.Model):
     location_id = fields.Many2one(
         "stock.location",
         string="Scrap Location",
-        domain="[('scrap_location', '=', True)]",
+        domain="[('usage', '=', 'inventory')]",
     )
     product_category_ids = fields.Many2many(
         string="Allowed Product Categories",
