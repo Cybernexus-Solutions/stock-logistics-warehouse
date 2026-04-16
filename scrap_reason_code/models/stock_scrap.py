@@ -22,7 +22,7 @@ class StockScrap(models.Model):
     scrap_location_id = fields.Many2one(
         'stock.location', 'Scrap Location',
         compute='_compute_scrap_location_id', store=True, required=True, precompute=True,
-        domain="[('scrap_location', '=', True)]", check_company=True, readonly=False)
+        domain="[('usage', '=', 'inventory')]", check_company=True, readonly=False)
    
     @api.depends("product_id", "product_id.categ_id")
     def _compute_allowed_reason_code_ids(self):
@@ -64,4 +64,3 @@ class StockScrap(models.Model):
                 scrap.scrap_location_id = scrap.reason_code_id.location_id
             else:
                 super(StockScrap, scrap)._compute_scrap_location_id()
-
